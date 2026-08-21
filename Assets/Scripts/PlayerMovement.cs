@@ -3,13 +3,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private InputAction thurst;
-
+    [SerializeField] private InputAction thrust;
+    [SerializeField] private InputAction rotation;
+    [SerializeField] private float moveForce = 10f;
+    [SerializeField] private float rotationForce = 100f;
     Rigidbody rb;
 
     void OnEnable()
     {
-        thurst.Enable();
+        thrust.Enable();
+        rotation.Enable();
     }
 
     void Start()
@@ -19,10 +22,28 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (thurst.IsPressed())
-        {
-            rb.AddRelativeForce(Vector3.up * 10f);
-        }        
+        ProcessThrust();
+
+        ProcessRotation();
     }
 
+    private void ProcessThrust()
+    {
+        if (thrust.IsPressed())
+        {
+            rb.AddRelativeForce(Vector3.up * moveForce);
+        }
+    }
+
+    private void ProcessRotation()
+    {
+        float rotationValue = rotation.ReadValue<float>();
+        if (rotationValue < 0)
+        {            
+            transform.Rotate(Vector3.forward * rotationForce * Time.fixedDeltaTime);
+        }else if (rotationValue > 0)
+        {
+            transform.Rotate(-Vector3.forward * rotationForce * Time.fixedDeltaTime);
+        }
+    }
 }

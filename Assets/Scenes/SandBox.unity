@@ -542,32 +542,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ff4bfc1f681364e8723c0563e9b079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  thurst:
-    m_Name: Thurst
+  thrust:
+    m_Name: Thrust
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 2057c5e0-9962-40d2-a361-085f6e910b10
+    m_Id: e4f2bad7-7a2e-4ac6-831e-0d2c65d4be9c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: f7376b42-6019-4e72-a231-9f5d88034e8f
+      m_Id: 1288fd37-8fa4-4ebf-b3ae-75c6e63cf320
       m_Path: <Keyboard>/space
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Thurst
+      m_Action: Thrust
       m_Flags: 0
     - m_Name: 
-      m_Id: b45257b4-ff32-489e-a80e-3f96761f8bb0
+      m_Id: 1569378a-07dc-40d8-985a-cf09894a94cf
       m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Thurst
+      m_Action: Thrust
       m_Flags: 0
     m_Flags: 0
     m_Priority: 0
+  rotation:
+    m_Name: Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 085e88ce-0089-4dbc-acc4-d100b3d18a6a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: Keyboard
+      m_Id: 4f9a6b7b-0cba-434d-aecc-ec5677df8536
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 3468d547-aa3c-4554-89b1-af3f57148ec9
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: f4171085-2fc9-4322-8e44-488840bccb0d
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: GamePad
+      m_Id: 2a710c26-ab2a-4375-92f7-d64697a7558a
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 68dbbb76-f4bb-46e1-9c3c-409e3a700864
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 1c2719c7-2b18-493f-a650-0460ce05eeb4
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    m_Flags: 0
+    m_Priority: 0
+  moveForce: 20
+  rotationForce: 100
 --- !u!54 &693637205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -614,8 +674,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.9245167, z: 1}
-  m_Center: {x: 0, y: 0.9225414, z: 0}
+  m_Size: {x: 1.8329964, y: 1.9245167, z: 1}
+  m_Center: {x: 0.23776102, y: 0.9225414, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
