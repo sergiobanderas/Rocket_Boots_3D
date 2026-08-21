@@ -1,16 +1,21 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private InputAction thurst;
+
+    void OnEnable()
     {
-        
+        thurst.Enable();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (thurst.IsPressed())
+        {
+            Debug.Log("Thurst is pressed");
+        }        
     }
+
 }
