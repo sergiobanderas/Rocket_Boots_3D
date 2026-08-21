@@ -5,16 +5,23 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private InputAction thurst;
 
+    Rigidbody rb;
+
     void OnEnable()
     {
         thurst.Enable();
     }
 
-    void Update()
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
     {
         if (thurst.IsPressed())
         {
-            Debug.Log("Thurst is pressed");
+            rb.AddRelativeForce(Vector3.up * 10f);
         }        
     }
 
