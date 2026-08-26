@@ -10,13 +10,18 @@ public class CollisionManager : MonoBehaviour
 
     AudioSource audioSource;
 
+    bool isControllable = true;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        isControllable = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!isControllable) { return; }
+
         switch (collision.gameObject.tag)
         {
             case "LaunchPad":
@@ -36,14 +41,18 @@ public class CollisionManager : MonoBehaviour
 
     private void LandingPadCollision()
     {
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(landingAudioClip);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(NextScene), reloadDelay);
     }
 
     private void ExplosionCollision()
-    {
-        audioSource.PlayOneShot(explosionAudioClip);
+    {   
+        isControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(explosionAudioClip);        
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(ReloadScene), reloadDelay);
     }
@@ -54,7 +63,7 @@ public class CollisionManager : MonoBehaviour
     }
 
     private void NextScene()
-    {        
+    {       
         if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             SceneManager.LoadScene(0);
