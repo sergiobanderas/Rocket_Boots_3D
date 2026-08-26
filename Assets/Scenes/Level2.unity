@@ -563,10 +563,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693637203}
-  - component: {fileID: 693637204}
   - component: {fileID: 693637205}
   - component: {fileID: 693637206}
   - component: {fileID: 693637207}
+  - component: {fileID: 693637204}
   - component: {fileID: 693637208}
   m_Layer: 0
   m_Name: Player
@@ -689,6 +689,7 @@ MonoBehaviour:
     m_Priority: 0
   moveForce: 15
   rotationForce: 2.5
+  thrustAudioClip: {fileID: 8300000, guid: e21c1a64ae7e4684c91d4ccbc7bbc2ca, type: 3}
 --- !u!54 &693637205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -846,6 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4febc0483791a249b2ffb7ce6ac266e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionManager
+  reloadDelay: 1
+  explosionAudioClip: {fileID: 8300000, guid: 558c923360273194ab2b15484e4bff5a, type: 3}
+  landingAudioClip: {fileID: 8300000, guid: 4b5b13dc4e8bb4b4cb8ac26aa5392a63, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,12 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Parameters
     [SerializeField] private InputAction thrust;
     [SerializeField] private InputAction rotation;
     [SerializeField] private float moveForce = 10f;
     [SerializeField] private float rotationForce = 100f;
-    Rigidbody rb;
 
+    [SerializeField] private AudioClip thrustAudioClip;
+    
+
+    //Cached component references
+    Rigidbody rb;
     AudioSource audioSource;
 
     void OnEnable()
@@ -38,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(thrustAudioClip);
             }
             
         }else
