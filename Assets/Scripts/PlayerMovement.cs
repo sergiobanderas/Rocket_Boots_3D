@@ -42,21 +42,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce(Vector3.up * moveForce);
-            
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(thrustAudioClip);
-            }
-            
-            if (!thrustParticleSystem.isPlaying)
-            {
-                thrustParticleSystem.Play();
-            }            
-        }else
+            StartThrusting();
+        }
+        else
         {
-            audioSource.Stop();
-            thrustParticleSystem.Stop();
+            StopThrusting();
+        }
+    }
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        thrustParticleSystem.Stop();
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * moveForce);
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(thrustAudioClip);
+        }
+
+        if (!thrustParticleSystem.isPlaying)
+        {
+            thrustParticleSystem.Play();
         }
     }
 
@@ -65,26 +76,43 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true; // freezing rotation so we can manually rotate
         float rotationValue = rotation.ReadValue<float>();
         if (rotationValue < 0)
-        {            
-            transform.Rotate(Vector3.forward * rotationForce );
-            if (!rightThrusterParticleSystem.isPlaying)
-            {
-                leftThrusterParticleSystem.Stop();
-                rightThrusterParticleSystem.Play();
-            }
-        }else if (rotationValue > 0)
         {
-            transform.Rotate(-Vector3.forward * rotationForce );
-            if (!leftThrusterParticleSystem.isPlaying)
-            {
-                
-                leftThrusterParticleSystem.Play();
-            }
-        }else
+            RotateRight();
+        }
+        else if (rotationValue > 0)
         {
-            leftThrusterParticleSystem.Stop();
-            rightThrusterParticleSystem.Stop();
+            RotateLeft();
+        }
+        else
+        {
+            StopRotation();
         }
         rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
+    }
+
+    private void StopRotation()
+    {
+        leftThrusterParticleSystem.Stop();
+        rightThrusterParticleSystem.Stop();
+    }
+
+    private void RotateLeft()
+    {
+        transform.Rotate(-Vector3.forward * rotationForce);
+        if (!leftThrusterParticleSystem.isPlaying)
+        {
+
+            leftThrusterParticleSystem.Play();
+        }
+    }
+
+    private void RotateRight()
+    {
+        transform.Rotate(Vector3.forward * rotationForce);
+        if (!rightThrusterParticleSystem.isPlaying)
+        {
+            leftThrusterParticleSystem.Stop();
+            rightThrusterParticleSystem.Play();
+        }
     }
 }
