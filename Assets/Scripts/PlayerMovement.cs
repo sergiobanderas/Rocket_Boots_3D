@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private AudioClip thrustAudioClip;
     
+    [SerializeField] private ParticleSystem thrustParticleSystem;
+    [SerializeField] private ParticleSystem leftThrusterParticleSystem;
+    [SerializeField] private ParticleSystem rightThrusterParticleSystem;    
 
     //Cached component references
     Rigidbody rb;
@@ -46,9 +49,14 @@ public class PlayerMovement : MonoBehaviour
                 audioSource.PlayOneShot(thrustAudioClip);
             }
             
+            if (!thrustParticleSystem.isPlaying)
+            {
+                thrustParticleSystem.Play();
+            }            
         }else
         {
             audioSource.Stop();
+            thrustParticleSystem.Stop();
         }
     }
 
@@ -59,9 +67,23 @@ public class PlayerMovement : MonoBehaviour
         if (rotationValue < 0)
         {            
             transform.Rotate(Vector3.forward * rotationForce );
+            if (!rightThrusterParticleSystem.isPlaying)
+            {
+                leftThrusterParticleSystem.Stop();
+                rightThrusterParticleSystem.Play();
+            }
         }else if (rotationValue > 0)
         {
             transform.Rotate(-Vector3.forward * rotationForce );
+            if (!leftThrusterParticleSystem.isPlaying)
+            {
+                
+                leftThrusterParticleSystem.Play();
+            }
+        }else
+        {
+            leftThrusterParticleSystem.Stop();
+            rightThrusterParticleSystem.Stop();
         }
         rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
     }
