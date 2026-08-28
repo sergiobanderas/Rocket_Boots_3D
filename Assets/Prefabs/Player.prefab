@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 3744193496422402134}
   - component: {fileID: 9133030013016971038}
   - component: {fileID: 8308906035826559811}
+  - component: {fileID: 2316785072978336975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -562,6 +563,18 @@ MonoBehaviour:
   landingAudioClip: {fileID: 8300000, guid: 4b5b13dc4e8bb4b4cb8ac26aa5392a63, type: 3}
   explosionParticleSystem: {fileID: 3576025044780684563}
   landingParticleSystem: {fileID: 3513025848090444312}
+--- !u!114 &2316785072978336975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148019471423192608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4d3e872ae8b1b49ae6d5a4d942b216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuitGame
 --- !u!1001 &1549093969251334409
 PrefabInstance:
   m_ObjectHideFlags: 0
